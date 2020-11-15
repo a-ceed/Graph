@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/css">
+
+body {
+    background-color: #030A39;
+}
+
+.megabox {
+  padding: 0px;
+  width: 500px;
+  height: 50px;
+  position:relative;
+  background-color: #030A39;
+}
+
+  .galaxybox {
+
+
+  position:relative;
+  background-color: #030A39;
+  width: 800px;
+  padding: 30px;
+}
+
+#box1 {
+    margin-left: 60px;
+  width: 33%;
+  height: 20%;
+  background-color: #180;
+  position: absolute;
+  bottom: 0px;
+  background-color: #FF3535;
+}
+
+#box2 {
+    margin-left: 60px;
+  width: 33%;
+  height: 20%;
+  background-color: #180;
+  position: absolute;
+  bottom: 0px;
+  background-color: #FF3535;
+}
+
+#box3 {
+    margin-left: 60px;
+  width: 0%;
+  height: 20%;
+  background-color: #180;
+  position: absolute;
+  bottom: 0px;
+  background-color: #FF3535;
+}
+
+#box4 {
+    margin-left: 60px;
+  width: 0%;
+  height: 20%;
+  background-color: #180;
+  position: absolute;
+  bottom: 0px;
+  background-color: #FF3535;
+}
+
+#box5 {
+    margin-left: 60px;
+  width: 0%;
+  height: 20%;
+  background-color: #180;
+  position: absolute;
+  bottom: 0px;
+  background-color: #FF3535;
+}
+
+.megabox p {
+      margin-left: 60px;
+  color: #ffffff;
+  font-family: Calibri, Arial;
+}
+
+.button {
+  margin-top: 50px;
+}
+
+.button2 {
+  margin-top: 20px;
+  margin-left: 0px;
+  margin-bottom: 20px;
+}
+
+
+.input {
+    size: 35px;
+    width: 35px;
+    value: 2;
+}
+
+.heading {
+ color: #ffffff;
+  font-family: Calibri, Arial;
+  font-size: 35px;
+}
+
+  </style>
+
+</head>
+
+
+<body>
+
+<div class="galaxybox">
+    <button class=button2 onclick="playall()">Запустить одновременно</button>
+  <p class="heading"># без переработки</p>
+
+<div class="megabox">
+  <p>Первичное сырьё</p>
+    <input id="inp_4" class="input" type="number" value="70" ><div id="box4"></div>
+</div>
+
+
+
+<div class="megabox">
+    <p>Произведённые бутылки</p>
+    <input id="inp_5" class="input" type="number" value="0" ><div id="box5"></div>
+</div>
+<button class=button onclick="startcount1()">Задать</button>
+<button class=button onclick="play1()">Старт</button>
+</div>
+
+
+
+<div class="galaxybox">
+    <p class="heading"># с переработкой</p>
+<div class="megabox">
+  <p>Первичное сырьё</p>
+    <input id="inp_1" class="input" type="number" value="70" ><div id="box1"></div>
+</div>
+
+<div class="megabox">
+    <p>Произведённые бутылки, они же вторсырьё</p>
+    <input id="inp_2" class="input" type="number" value="10"><div id="box2"></div>
+</div>
+
+<div class="megabox">
+    <p>Повторно произведённые бутылки — неперерабатываемые </p>
+    <input id="inp_3" class="input" type="number" value="0" ><div id="box3"></div>
+</div>
+<button class=button onclick="startcount()">Задать</button>
+<button class=button onclick="play()">Старт</button>
+
+</div>
+
+
+
+<script>
+"use strict"
+
+
+let startstatic1 = 70;
+let startstatic2 = 10;
+let startstatic3 = 0;
+let startstatic4 = 70;
+let startstatic5 = 0;
+
+let numstatic1 = 70;
+let numstatic2 = 10;
+let numstatic3 = 0;
+let numstatic4 = 70;
+let numstatic5 = 0;
+
+let endstatic1 = 70;
+let endstatic2 = 10;
+let endstatic3 = 0;
+let endstatic4 = 70;
+let endstatic5 = 0;
+
+let count1 = 70;
+let count2 = 10;
+let count3 = 0;
+let count4 = 70;
+let count5 = 0;
+
+
+    box1.style.width = endstatic1 + '%';
+    box2.style.width = endstatic2 + '%';
+    box3.style.width = endstatic3 + '%';
+    box4.style.width = endstatic4 + '%';
+    box5.style.width = endstatic5 + '%';
+
+function progress1() {
+
+  if (numstatic4 > 0 && numstatic5 < 100 ) {
+    endstatic4 = numstatic4 -0.5;
+    box4.style.width = endstatic4 + '%';
+    numstatic4 = endstatic4;
+
+    endstatic5 = Number(numstatic5) + 0.5;
+    box5.style.width = endstatic5 + '%';
+    numstatic5 = endstatic5;
+  }
+
+
+
+  else if (numstatic4 = 0) {
+clearInterval(myTimer);
+
+  }
+
+}
+
+function progress() {
+
+  if (numstatic2 > 0 && numstatic1 > 0 ) {
+    endstatic2 = numstatic2 -0.5;
+    box2.style.width = endstatic2 + '%';
+    numstatic2 = endstatic2;
+
+    endstatic3 = Number(numstatic3) + 0.5;
+    box3.style.width = endstatic3 + '%';
+    numstatic3 = endstatic3;
+  }
+
+  else if (numstatic2 <= 0 && numstatic1 > 0) {
+    endstatic1 = numstatic1 -0.5;
+    box1.style.width = endstatic1 + '%';
+    numstatic1 = endstatic1;
+
+    endstatic2 = numstatic2 +0.5;
+    box2.style.width = endstatic2 + '%';
+    numstatic2 = endstatic2;
+
+    endstatic3 = numstatic3 +0.5;
+    box3.style.width = endstatic3 + '%';
+    numstatic3 = endstatic3;
+    
+  }
+
+  else if (numstatic1 = 0) {
+clearInterval(myTimer);
+
+  }
+
+}
+
+function play1 () {
+setInterval(progress1, 100);
+}
+function play () {
+setInterval(progress, 100);
+}
+
+function playall () {
+setInterval(progress, 100);
+setInterval(progress1, 100);
+}
+
+
+function startcount1() {
+
+count4 = document.getElementById('inp_4').value;
+count5 = document.getElementById('inp_5').value;
+
+
+numstatic4 = count4;
+numstatic5 = count5;
+
+
+startstatic4 = count4;
+startstatic5 = count5;
+
+
+endstatic4 = count4;
+endstatic5 = count5;
+
+
+box4.style.width = startstatic4 + '%';
+box5.style.width = startstatic5 + '%';
+
+}
+
+function startcount() {
+
+count1 = document.getElementById('inp_1').value;
+count2 = document.getElementById('inp_2').value;
+count3 = document.getElementById('inp_3').value;
+
+numstatic1 = count1;
+numstatic2 = count2;
+numstatic3 = count3;
+
+startstatic1 = count1;
+startstatic2 = count2;
+startstatic3 = count3;
+
+endstatic1 = count1;
+endstatic2 = count2;
+endstatic3 = count3;
+
+box1.style.width = startstatic1 + '%';
+box2.style.width = startstatic2 + '%';
+box3.style.width = startstatic3 + '%';
+}
+
+  </script>
+
+
+
+</body>
+</html>
