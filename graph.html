@@ -19,12 +19,10 @@ body {
 }
 
   .galaxybox {
-
-
   position:relative;
   background-color: #030A39;
   width: 800px;
-  padding: 30px;
+  padding-left: 30px;
 }
 
 #box1 {
@@ -100,10 +98,28 @@ body {
     value: 2;
 }
 
+h1 {
+ color: #ffffff;
+  font-family: Calibri, Arial;
+  font-size: 35px;
+
+}
+
 .heading {
  color: #ffffff;
   font-family: Calibri, Arial;
   font-size: 35px;
+}
+.autor {
+	position: absolute;
+	right: 50px;
+	bottom: 40px;
+}
+
+a{
+	color: #232C6A;
+	  font-family: Calibri, Arial;
+  font-size: 25px;
 }
 
   </style>
@@ -114,7 +130,11 @@ body {
 <body>
 
 <div class="galaxybox">
+	<p class="heading"><h1>Визуализация возможностей переработки v0.1</h1></p>
     <button class=button2 onclick="playall()">Запустить одновременно</button>
+    <button class=button2 onclick="refresh()">Сбросить</button>
+
+    
   <p class="heading"># без переработки</p>
 
 <div class="megabox">
@@ -153,9 +173,10 @@ body {
 <button class=button onclick="startcount()">Задать</button>
 <button class=button onclick="play()">Старт</button>
 
+
 </div>
 
-
+<div class="autor"><a href="https://vk.com/darkecologist">Тёмный эколог</a></div>
 
 <script>
 "use strict"
@@ -186,15 +207,17 @@ let count4 = 70;
 let count5 = 0;
 
 
-    box1.style.width = endstatic1 + '%';
-    box2.style.width = endstatic2 + '%';
-    box3.style.width = endstatic3 + '%';
-    box4.style.width = endstatic4 + '%';
-    box5.style.width = endstatic5 + '%';
+box1.style.width = endstatic1 + '%';
+box2.style.width = endstatic2 + '%';
+box3.style.width = endstatic3 + '%';
+box4.style.width = endstatic4 + '%';
+box5.style.width = endstatic5 + '%';
+
+let animation = true;
 
 function progress1() {
 
-  if (numstatic4 > 0 && numstatic5 < 100 ) {
+  if (numstatic4 > 0 && numstatic5 < 100 && animation == true) {
     endstatic4 = numstatic4 -0.5;
     box4.style.width = endstatic4 + '%';
     numstatic4 = endstatic4;
@@ -202,6 +225,7 @@ function progress1() {
     endstatic5 = Number(numstatic5) + 0.5;
     box5.style.width = endstatic5 + '%';
     numstatic5 = endstatic5;
+
   }
 
 
@@ -215,7 +239,7 @@ clearInterval(myTimer);
 
 function progress() {
 
-  if (numstatic2 > 0 && numstatic1 > 0 ) {
+  if (numstatic2 > 0 && numstatic1 > 0 && animation == true) {
     endstatic2 = numstatic2 -0.5;
     box2.style.width = endstatic2 + '%';
     numstatic2 = endstatic2;
@@ -247,16 +271,61 @@ clearInterval(myTimer);
 
 }
 
-function play1 () {
-setInterval(progress1, 100);
+function play1() {
+  animation = true;
+  setInterval(progress1, 100);
 }
-function play () {
-setInterval(progress, 100);
+function play() {
+  animation = true;
+  setInterval(progress, 100);
 }
 
-function playall () {
-setInterval(progress, 100);
-setInterval(progress1, 100);
+function playall() {
+  animation = true;
+  setInterval(progress, 100);
+  setInterval(progress1, 100);
+}
+
+function stop() {
+animation = false;
+
+count4 = document.getElementById('inp_4').value;
+count5 = document.getElementById('inp_5').value;
+
+numstatic4 = count4;
+numstatic5 = count5;
+
+startstatic4 = count4;
+startstatic5 = count5;
+
+endstatic4 = count4;
+endstatic5 = count5;
+
+box4.style.width = startstatic4 + '%';
+box5.style.width = startstatic5 + '%';
+
+
+
+count1 = document.getElementById('inp_1').value;
+count2 = document.getElementById('inp_2').value;
+count3 = document.getElementById('inp_3').value;
+
+numstatic1 = count1;
+numstatic2 = count2;
+numstatic3 = count3;
+
+startstatic1 = count1;
+startstatic2 = count2;
+startstatic3 = count3;
+
+endstatic1 = count1;
+endstatic2 = count2;
+endstatic3 = count3;
+
+box1.style.width = startstatic1 + '%';
+box2.style.width = startstatic2 + '%';
+box3.style.width = startstatic3 + '%';
+
 }
 
 
@@ -305,6 +374,10 @@ box1.style.width = startstatic1 + '%';
 box2.style.width = startstatic2 + '%';
 box3.style.width = startstatic3 + '%';
 }
+
+function refresh() {
+location.reload();
+};
 
   </script>
 
